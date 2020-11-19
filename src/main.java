@@ -1,4 +1,4 @@
-import java.awt.geom.Point2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,7 +14,7 @@ public class main {
 
     static Frame frame;
 
-    static ArrayList<Square> snake = new ArrayList<Square>();
+    static ArrayList<Point> snake = new ArrayList<Point>();
 
     static int direction = 0; //Right 0 Down 1 Left 2 Up 3
 
@@ -42,9 +42,9 @@ public class main {
         newBerry();
         frame.gameBoard.blackout();
         snake.clear();
-        snake.add(new Square(9, 10));
-        snake.add(new Square(8, 10));
-        snake.add(new Square(7, 10));
+        snake.add(new Point(9, 10));
+        snake.add(new Point(8, 10));
+        snake.add(new Point(7, 10));
         score = 0;
     }
 
@@ -103,16 +103,16 @@ public class main {
     private static void addSquareToSnake() {
         switch (direction) {
             case 0:
-                snake.add(new Square(snake.get(snake.size() - 1).x - 1, snake.get(snake.size() - 1).y));
+                snake.add(new Point(snake.get(snake.size() - 1).x - 1, snake.get(snake.size() - 1).y));
                 break;
             case 1:
-                snake.add(new Square(snake.get(snake.size() - 1).x, snake.get(snake.size() - 1).y - 1));
+                snake.add(new Point(snake.get(snake.size() - 1).x, snake.get(snake.size() - 1).y - 1));
                 break;
             case 2:
-                snake.add(new Square(snake.get(snake.size() - 1).x + 1, snake.get(snake.size() - 1).y));
+                snake.add(new Point(snake.get(snake.size() - 1).x + 1, snake.get(snake.size() - 1).y));
                 break;
             case 3:
-                snake.add(new Square(snake.get(snake.size() - 1).x, snake.get(snake.size() - 1).y + 1));
+                snake.add(new Point(snake.get(snake.size() - 1).x, snake.get(snake.size() - 1).y + 1));
                 break;
         }
     }
@@ -120,22 +120,22 @@ public class main {
     private static void moveSnake(int dir) {
         switch (dir) {
             case 0:
-                snake.add(0, new Square(snake.get(0).x + 1, snake.get(0).y));
+                snake.add(0, new Point(snake.get(0).x + 1, snake.get(0).y));
                 matrix[snake.get(snake.size() - 1).x][snake.get(snake.size() - 1).y] = 0;
                 snake.remove(snake.size() - 1);
                 break;
             case 1:
-                snake.add(0, new Square(snake.get(0).x, snake.get(0).y + 1));
+                snake.add(0, new Point(snake.get(0).x, snake.get(0).y + 1));
                 matrix[snake.get(snake.size() - 1).x][snake.get(snake.size() - 1).y] = 0;
                 snake.remove(snake.size() - 1);
                 break;
             case 2:
-                snake.add(0, new Square(snake.get(0).x - 1, snake.get(0).y));
+                snake.add(0, new Point(snake.get(0).x - 1, snake.get(0).y));
                 matrix[snake.get(snake.size() - 1).x][snake.get(snake.size() - 1).y] = 0;
                 snake.remove(snake.size() - 1);
                 break;
             case 3:
-                snake.add(0, new Square(snake.get(0).x, snake.get(0).y - 1));
+                snake.add(0, new Point(snake.get(0).x, snake.get(0).y - 1));
                 matrix[snake.get(snake.size() - 1).x][snake.get(snake.size() - 1).y] = 0;
                 snake.remove(snake.size() - 1);
                 break;
