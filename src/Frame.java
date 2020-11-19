@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -20,38 +19,38 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-		InputMap inputMap = gameBoard.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		ActionMap actionMap = gameBoard.getActionMap();
+        InputMap inputMap = gameBoard.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = gameBoard.getActionMap();
 
-		AbstractAction right = new AbstractAction() {
+        AbstractAction right = new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                main.direction = 0;
+                main.direction = main.Direction.RIGHT;
 
             }
         };
-		AbstractAction left = new AbstractAction() {
+        AbstractAction left = new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                main.direction = 2;
+                main.direction = main.Direction.LEFT;
 
             }
         };
-		AbstractAction up = new AbstractAction() {
+        AbstractAction up = new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                main.direction = 3;
+                main.direction = main.Direction.UP;
 
             }
         };
-		AbstractAction down = new AbstractAction() {
+        AbstractAction down = new AbstractAction() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                main.direction = 1;
+                main.direction = main.Direction.DOWN;
 
             }
         };

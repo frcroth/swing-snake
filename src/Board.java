@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Board extends JPanel {
 
@@ -10,7 +11,8 @@ public class Board extends JPanel {
     static int additional_space = 70;
 
     public Board() {
-        setSize(main.boardLength * square_size + additional_space, main.boardLength * square_size + additional_space);
+        setSize(main.boardLength * square_size + additional_space,
+                main.boardLength * square_size + additional_space);
         repaint();
     }
 
@@ -41,13 +43,13 @@ public class Board extends JPanel {
             for (int j = 0; j < main.matrix[i].length; j++) {
                 value = main.matrix[i][j];
                 switch (value) {
-                    case 0:
+                    case 0: // Background
                         g.setColor(Color.BLACK);
                         break;
-                    case 1:
+                    case 1: // Berry
                         g.setColor(Color.RED);
                         break;
-                    case 2:
+                    case 2: // Snake
                         g.setColor(Color.GREEN);
                         break;
                 }
@@ -57,20 +59,18 @@ public class Board extends JPanel {
     }
 
     void paintSnake() {
-        for (int i = 0; i < main.snake.size(); i++) {
-            main.matrix[main.snake.get(i).x][main.snake.get(i).y] = 2;
+        for (Point point : main.snake) {
+            main.matrix[point.x][point.y] = 2;
         }
     }
 
     void paintBerry() {
-        main.matrix[main.berry_x][main.berry_y] = 1;
+        main.matrix[main.berry.x][main.berry.y] = 1;
     }
 
     public void blackout() {
         for (int i = 0; i < main.matrix.length; i++) {
-            for (int j = 0; j < main.matrix[i].length; j++) {
-                main.matrix[i][j] = 0;
-            }
+            Arrays.fill(main.matrix[i], 0);
         }
     }
 
