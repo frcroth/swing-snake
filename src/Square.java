@@ -1,6 +1,7 @@
 public class Square {
-    int x = 0;
-    int y = 0;
+
+    int x;
+    int y;
 
     public Square(int x, int y) {
         this.x = x;

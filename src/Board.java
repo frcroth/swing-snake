@@ -3,31 +3,40 @@ import java.awt.*;
 
 public class Board extends JPanel {
 
+    static int x_offset = 20;
+    static int y_offset = 20;
+    static int square_size = 15;
+
+    static int additional_space = 70;
+
     public Board() {
-        setSize(1000, 1000);
+        setSize(main.boardLength * square_size + additional_space, main.boardLength * square_size + additional_space);
         repaint();
     }
 
-    // SIZE of the Board 1000x1000
-    // One square at size 20x20 -> 400 Squares
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
 
-        paintSquares(g);
         paintSnake();
-        g.setColor(Color.GRAY);
-        g.drawString(String.valueOf(main.score), 10, 10);
-        g.setColor(Color.GREEN);
-        g.drawString(String.valueOf(main.snake.size()), 20, 20);
+        paintBerry();
 
-        main.matrix[main.berryx][main.berryy] = 1;
+        paintSquares(g);
+        drawScoreLabel(g);
     }
 
+    void drawScoreLabel(Graphics g) {
+        g.setColor(Color.GRAY);
+        Font f = new Font("SansSerif", Font.BOLD, 12);
+        g.setFont(f);
+        g.drawString(String.valueOf(main.score), 10, 15);
+    }
+
+
     void paintSquares(Graphics g) {
-        int value = 0;
+        int value;
         for (int i = 0; i < main.matrix.length; i++) {
             for (int j = 0; j < main.matrix[i].length; j++) {
                 value = main.matrix[i][j];
@@ -41,11 +50,8 @@ public class Board extends JPanel {
                     case 2:
                         g.setColor(Color.GREEN);
                         break;
-                    case 3:
-                        g.setColor(Color.YELLOW);
-                        break;
                 }
-                g.fillRect(20 * i, 20 * j, 20 * i + 10, 20 * j + 20);
+                g.fillRect(square_size * i + x_offset, square_size * j + y_offset, square_size, square_size);
             }
         }
     }
@@ -57,7 +63,7 @@ public class Board extends JPanel {
     }
 
     void paintBerry() {
-        main.matrix[main.berryx][main.berryy] = 1;
+        main.matrix[main.berry_x][main.berry_y] = 1;
     }
 
     public void blackout() {
@@ -66,7 +72,6 @@ public class Board extends JPanel {
                 main.matrix[i][j] = 0;
             }
         }
-
     }
 
 }

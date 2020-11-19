@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -8,12 +9,13 @@ public class Frame extends JFrame {
     Board gameBoard;
 
     public Frame() {
-        setSize(1000, 1000);
+        gameBoard = new Board();
+
+        setSize(gameBoard.getWidth(), gameBoard.getHeight());
         setVisible(true);
         setLocationRelativeTo(null);
         getContentPane().setLayout(null);
         setTitle("Swing Snake");
-        gameBoard = new Board();
         add(gameBoard);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
